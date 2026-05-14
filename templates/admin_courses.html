@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Courses - EduTutor Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; min-height: 100vh; background: #f1f5f9; }
+        .sidebar {
+            width: 220px; background: #1e293b; color: white;
+            padding: 20px 0; display: flex; flex-direction: column;
+            height: 100vh; position: fixed; overflow: hidden;
+        }
+        .sidebar h2 { font-size: 18px; padding: 10px 20px 30px; border-bottom: 1px solid #334155; }
+        .sidebar a { display: block; color: white; text-decoration: none; padding: 14px 20px; font-size: 15px; transition: background 0.2s; }
+        .sidebar a:hover { background: #334155; }
+        .sidebar a.active { background: #3b82f6; }
+        .sidebar a.logout { margin-top: auto; background: #ef4444; }
+        .sidebar a.logout:hover { background: #dc2626; }
+        .main { margin-left: 220px; padding: 30px; flex: 1; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 18px 24px; border-radius: 10px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .topbar h1 { font-size: 24px; color: #1e293b; }
+        .card { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .card h3 { font-size: 18px; color: #1e293b; margin-bottom: 16px; }
+        table { width: 100%; border-collapse: collapse; }
+        thead tr { background: #3b82f6; color: white; }
+        th, td { padding: 14px 18px; text-align: left; font-size: 14px; }
+        tbody tr { border-bottom: 1px solid #e2e8f0; }
+        tbody tr:hover { background: #f8fafc; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .online  { background: #dcfce7; color: #16a34a; }
+        .offline { background: #dbeafe; color: #1d4ed8; }
+        .btn-edit { background: #3b82f6; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; }
+        .btn-edit:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>EduTutor Admin</h2>
+    <a href="/admin">🏠 Dashboard</a>
+    <a href="/admin/users">👥 Users</a>
+    <a href="/admin/courses" class="active">📚 Courses</a>
+    <a href="/admin/settings">⚙️ Settings</a>
+    <a href="/admin/logout" class="logout">🚪 Logout</a>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <h1>Courses</h1>
+        <span>Welcome, Admin</span>
+    </div>
+    <div class="card">
+        <h3>All Courses</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Instructor</th>
+                    <th>Mode</th>
+                    <th>Fee (₹)</th>
+                    <th>Schedule</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.id }}</td>
+                    <td><strong>{{ course.name }}</strong></td>
+                    <td>{{ course.duration }}</td>
+                    <td>{{ course.instructor }}</td>
+                    <td><span class="badge {{ course.mode | lower }}">{{ course.mode }}</span></td>
+                    <td>₹{{ course.fee | int }}</td>
+                    <td>{{ course.schedule }}</td>
+                    <td>
+                        <a href="/admin/courses/edit/{{ course.id }}" class="btn-edit">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

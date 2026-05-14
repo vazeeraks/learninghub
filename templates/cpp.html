@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C++ Course - EduTutor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% include 'navbar.html' %}
+
+<section class="course-page">
+    <div class="course-container">
+        <div class="course-text">
+            <h1>C++ Programming</h1>
+            <p>C++ is an extension of C with object-oriented features. It is a programming language known for its fast speed and low-level memory management.</p>
+            <p>Used for making operating systems, embedded systems, graphical user interfaces and High Frequency Trading (HFT) systems.</p>
+            <p>Supports both low-level and high-level features such as manual memory management and Object Oriented Programming.</p>
+            <p>Provides one of the fastest execution speeds among high-level languages.</p>
+        </div>
+        <div class="course-box">
+            <h3>Course Details</h3>
+            <p><strong>Duration:</strong> 3 Months</p>
+            <p><strong>Fees:</strong> ₹8,800</p>
+            <p><strong>Instructor:</strong> Mr. Rajan</p>
+            <p><strong>Mode:</strong> Offline</p>
+            <p><strong>Schedule:</strong> Tue/Thu/Sat</p>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

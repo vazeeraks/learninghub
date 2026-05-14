@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users - EduTutor Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; min-height: 100vh; background: #f1f5f9; }
+        .sidebar {
+            width: 220px; background: #1e293b; color: white;
+            padding: 20px 0; display: flex; flex-direction: column;
+            height: 100vh; position: fixed; overflow: hidden;
+        }
+        .sidebar h2 { font-size: 18px; padding: 10px 20px 30px; border-bottom: 1px solid #334155; }
+        .sidebar a {
+            display: block; color: white; text-decoration: none;
+            padding: 14px 20px; font-size: 15px; transition: background 0.2s;
+        }
+        .sidebar a:hover { background: #334155; }
+        .sidebar a.active { background: #3b82f6; }
+        .sidebar a.logout { margin-top: auto; background: #ef4444; }
+        .sidebar a.logout:hover { background: #dc2626; }
+        .main { margin-left: 220px; padding: 30px; flex: 1; }
+        .topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            background: white; padding: 18px 24px; border-radius: 10px;
+            margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .topbar h1 { font-size: 24px; color: #1e293b; }
+        .card { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .card-header h3 { font-size: 18px; color: #1e293b; }
+        .btn-add-user { background: #22c55e; color: white; padding: 9px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; }
+        .btn-add-user:hover { background: #16a34a; }
+        table { width: 100%; border-collapse: collapse; }
+        thead tr { background: #3b82f6; color: white; }
+        th, td { padding: 14px 18px; text-align: left; font-size: 14px; }
+        tbody tr { border-bottom: 1px solid #e2e8f0; }
+        tbody tr:hover { background: #f8fafc; }
+        .btn-edit, .btn-delete { padding: 7px 16px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; margin-right: 6px; text-decoration: none; display: inline-block; }
+        .btn-edit { background: #f59e0b; color: white; }
+        .btn-delete { background: #ef4444; color: white; }
+        .flash { background: #dcfce7; color: #166534; padding: 10px 16px; border-radius: 6px; margin-bottom: 16px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>EduTutor Admin</h2>
+    <a href="/admin">🏠 Dashboard</a>
+    <a href="/admin/users" class="active">👥 Users</a>
+    <a href="/admin/courses">📚 Courses</a>
+    <a href="/admin/settings">⚙️ Settings</a>
+    <a href="/admin/logout" class="logout">🚪 Logout</a>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <h1>All Users</h1>
+        <span>Welcome, Admin</span>
+    </div>
+    <div class="card">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}<div class="flash">{{ messages[0] }}</div>{% endif %}
+        {% endwith %}
+        <div class="card-header">
+            <h3>Registered Users</h3>
+            <a href="/admin/adduser" class="btn-add-user">➕ Add User</a>
+        </div>
+        <table>
+            <thead><tr><th>ID</th><th>Username</th><th>Action</th></tr></thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <a href="/admin/edit/{{ user.id }}" class="btn-edit">✏️ Edit</a>
+                        <form action="/admin/delete/{{ user.id }}" method="POST" style="display:inline;"
+                              onsubmit="return confirm('Delete {{ user.username }}?')">
+                            <button type="submit" class="btn-delete">🗑️ Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

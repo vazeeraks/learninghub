@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C Course - EduTutor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% include 'navbar.html' %}
+
+<section class="course-page">
+    <div class="course-container">
+        <div class="course-text">
+            <h1>C Programming</h1>
+            <p>C is a general-purpose mid-level programming language developed by Dennis M. Ritchie at Bell Laboratories in 1972. It was initially used for the development of UNIX operating system, but it later became popular for a wide range of applications.</p>
+            <p>C is considered mother of all programming languages as many later languages like Java, PHP and JavaScript have borrowed syntax/features directly or indirectly from C.</p>
+            <p>Learning C programming first helps to learn any modern programming language as it provides a deeper understanding of the fundamentals of programming and operating systems with features like pointers.</p>
+            <p>C is widely used in operating systems, embedded systems, compilers, databases, networking, game engines and real-time systems for its efficiency in low-resource environments.</p>
+        </div>
+        <div class="course-box">
+            <h3>Course Details</h3>
+            <p><strong>Duration:</strong> 3 Months</p>
+            <p><strong>Fees:</strong> ₹8,800</p>
+            <p><strong>Instructor:</strong> Mr. Rajan</p>
+            <p><strong>Mode:</strong> Offline</p>
+            <p><strong>Schedule:</strong> Mon/Wed/Fri</p>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

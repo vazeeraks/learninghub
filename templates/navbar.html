@@ -1,0 +1,44 @@
+<div class="navbar">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logoorg.png') }}" alt="EduTutor Logo">
+    </div>
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <div class="dropdown">
+            <a href="#">About</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('ourstory') }}">Our Story</a>
+                <a href="{{ url_for('mission') }}">Our Mission</a>
+                <a href="{{ url_for('promise') }}">Our Promise</a>
+                <a href="{{ url_for('whatwedo') }}">What We Do</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#">Courses</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('course_c') }}">C</a>
+                <a href="{{ url_for('course_cpp') }}">C++</a>
+                <a href="{{ url_for('course_java') }}">JAVA</a>
+                <a href="{{ url_for('course_python') }}">PYTHON</a>
+                <a href="{{ url_for('course_datascience') }}">DATA SCIENCE</a>
+                <a href="{{ url_for('course_sql') }}">SQL</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#">Contact</a>
+            <div class="dropdown-content">
+                <p><b>Email:</b> edututor@gmail.com</p>
+                <p><b>Phone:</b> +91 9876543210</p>
+            </div>
+        </div>
+
+        {% if session.get('user') %}
+            <a href="{{ url_for('logout') }}" class="login-btn">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+        {% endif %}
+    </div>
+</div>

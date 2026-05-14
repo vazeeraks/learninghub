@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings - EduTutor Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; min-height: 100vh; background: #f1f5f9; }
+        .sidebar {
+            width: 220px; background: #1e293b; color: white;
+            padding: 20px 0; display: flex; flex-direction: column;
+            height: 100vh; position: fixed; overflow: hidden;
+        }
+        .sidebar h2 { font-size: 18px; padding: 10px 20px 30px; border-bottom: 1px solid #334155; }
+        .sidebar a { display: block; color: white; text-decoration: none; padding: 14px 20px; font-size: 15px; transition: background 0.2s; }
+        .sidebar a:hover { background: #334155; }
+        .sidebar a.active { background: #3b82f6; }
+        .sidebar a.logout { margin-top: auto; background: #ef4444; }
+        .sidebar a.logout:hover { background: #dc2626; }
+        .main { margin-left: 220px; padding: 30px; flex: 1; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 18px 24px; border-radius: 10px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .topbar h1 { font-size: 24px; color: #1e293b; }
+        .card { background: white; border-radius: 10px; padding: 32px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .card h3 { font-size: 18px; color: #1e293b; margin-bottom: 20px; }
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+        .setting-row:last-child { border-bottom: none; }
+        .setting-label { font-size: 15px; color: #1e293b; font-weight: 500; }
+        .setting-desc { font-size: 13px; color: #94a3b8; margin-top: 3px; }
+        .info-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin-top: 24px; font-size: 14px; color: #475569; }
+        .info-box strong { color: #1e293b; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>EduTutor Admin</h2>
+    <a href="/admin">🏠 Dashboard</a>
+    <a href="/admin/users">👥 Users</a>
+    <a href="/admin/courses">📚 Courses</a>
+    <a href="/admin/settings" class="active">⚙️ Settings</a>
+    <a href="/admin/logout" class="logout">🚪 Logout</a>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <h1>Settings</h1>
+        <span>Welcome, Admin</span>
+    </div>
+    <div class="card">
+        <h3>Admin Information</h3>
+        <div class="setting-row">
+            <div>
+                <div class="setting-label">Admin Username</div>
+                <div class="setting-desc">The username used to log in to the admin panel</div>
+            </div>
+            <strong>admin</strong>
+        </div>
+        <div class="setting-row">
+            <div>
+                <div class="setting-label">App Name</div>
+                <div class="setting-desc">The name of this platform</div>
+            </div>
+            <strong>EduTutor</strong>
+        </div>
+        <div class="setting-row">
+            <div>
+                <div class="setting-label">Database</div>
+                <div class="setting-desc">Current database being used</div>
+            </div>
+            <strong>SQLite (users.db)</strong>
+        </div>
+        <div class="setting-row">
+            <div>
+                <div class="setting-label">Total Courses</div>
+                <div class="setting-desc">Number of courses in the system</div>
+            </div>
+            <strong>6</strong>
+        </div>
+
+        <div class="info-box">
+            ℹ️ To change the admin password, update <strong>ADMIN_PASSWORD</strong> in <strong>app.py</strong> and restart the server.
+        </div>
+    </div>
+</div>
+</body>
+</html>

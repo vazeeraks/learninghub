@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Course - EduTutor Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; min-height: 100vh; background: #f1f5f9; }
+        .sidebar { width: 220px; background: #1e293b; color: white; padding: 20px 0; display: flex; flex-direction: column; height: 100vh; position: fixed; }
+        .sidebar h2 { font-size: 18px; padding: 10px 20px 30px; border-bottom: 1px solid #334155; }
+        .sidebar a { display: block; color: white; text-decoration: none; padding: 14px 20px; font-size: 15px; }
+        .sidebar a:hover { background: #334155; }
+        .sidebar a.active { background: #3b82f6; }
+        .sidebar a.logout { margin-top: auto; background: #ef4444; }
+        .main { margin-left: 220px; padding: 30px; flex: 1; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 18px 24px; border-radius: 10px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .topbar h1 { font-size: 24px; color: #1e293b; }
+        .card { background: white; border-radius: 10px; padding: 30px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); max-width: 600px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; color: #374151; font-size: 14px; }
+        input, select { width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; margin-bottom: 18px; }
+        input:focus, select:focus { outline: none; border-color: #3b82f6; }
+        .btn-row { display: flex; gap: 12px; margin-top: 8px; }
+        .btn-save { background: #3b82f6; color: white; border: none; padding: 10px 24px; border-radius: 8px; font-size: 15px; cursor: pointer; }
+        .btn-save:hover { background: #2563eb; }
+        .btn-cancel { background: #e5e7eb; color: #374151; border: none; padding: 10px 24px; border-radius: 8px; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+        .error { background: #fee2e2; color: #dc2626; padding: 10px 14px; border-radius: 8px; margin-bottom: 18px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>EduTutor Admin</h2>
+    <a href="/admin">🏠 Dashboard</a>
+    <a href="/admin/users">👥 Users</a>
+    <a href="/admin/courses" class="active">📚 Courses</a>
+    <a href="/admin/settings">⚙️ Settings</a>
+    <a href="/admin/logout" class="logout">🚪 Logout</a>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <h1>Edit Course</h1>
+        <span>Welcome, Admin</span>
+    </div>
+    <div class="card">
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        <form method="POST">
+            <label>Course Name</label>
+            <input type="text" name="name" value="{{ course.name }}" required>
+
+            <label>Duration</label>
+            <input type="text" name="duration" value="{{ course.duration }}" placeholder="e.g. 3 months">
+
+            <label>Schedule</label>
+            <input type="text" name="schedule" value="{{ course.schedule }}" placeholder="e.g. Mon/Wed/Fri">
+
+            <label>Instructor</label>
+            <input type="text" name="instructor" value="{{ course.instructor }}">
+
+            <label>Mode</label>
+            <select name="mode">
+                <option value="Online"  {% if course.mode == 'Online'  %}selected{% endif %}>Online</option>
+                <option value="Offline" {% if course.mode == 'Offline' %}selected{% endif %}>Offline</option>
+            </select>
+
+            <label>Fee (₹)</label>
+            <input type="number" name="fee" value="{{ course.fee }}">
+
+            <label>Registration Fee (₹)</label>
+            <input type="number" name="registration_fee" value="{{ course.registration_fee }}">
+
+            <label>Material Fee (₹)</label>
+            <input type="number" name="material_fee" value="{{ course.material_fee }}">
+
+            <label>Discount (₹)</label>
+            <input type="number" name="discount" value="{{ course.discount }}">
+
+            <div class="btn-row">
+                <button type="submit" class="btn-save">Save Changes</button>
+                <a href="/admin/courses" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
